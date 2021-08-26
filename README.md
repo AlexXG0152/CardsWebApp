@@ -1,6 +1,8 @@
 # CardsWebApp
 Web application for working with discount shop cards
+
 ENGLISH WERSION (RUSSIAN VERION BELOW)
+
 I searched for examples of test items given when applying for a job and found this.
 After reading it, I realized that I can do it and it is interesting for me to implement it. Therefore, I decided to make a base for the application of loyalty cards of the retail network based on this technical task.
 Of course, this application can be refined and expanded for a long time to come (for example, create test databases with stores, sellers, make statistics on the use of all cards and statistics on purchases on the card, calculate discounts, send messages from the database, and so on).
