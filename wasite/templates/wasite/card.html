@@ -1,0 +1,105 @@
+{% load render_table from django_tables2 %}
+
+<!DOCTYPE html>
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.3.1/jszip-2.5.0/dt-1.10.25/af-2.3.7/b-1.7.1/b-colvis-1.7.1/b-html5-1.7.1/b-print-1.7.1/cr-1.5.4/date-1.1.1/fc-3.3.3/fh-3.1.9/kt-2.6.2/r-2.2.9/rg-1.1.3/rr-1.2.8/sc-2.0.4/sb-1.1.0/sp-1.3.0/sl-1.3.3/datatables.min.css"/>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/plug-ins/1.10.25/sorting/datetime-moment.js"></script>  
+  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.3.1/jszip-2.5.0/dt-1.10.25/af-2.3.7/b-1.7.1/b-colvis-1.7.1/b-html5-1.7.1/b-print-1.7.1/cr-1.5.4/date-1.1.1/fc-3.3.3/fh-3.1.9/kt-2.6.2/r-2.2.9/rg-1.1.3/rr-1.2.8/sc-2.0.4/sb-1.1.0/sp-1.3.0/sl-1.3.3/datatables.min.js"></script>
+
+ <script type="text/javascript" class="init">
+	
+    $(document).ready(function() {
+      //$.fn.dataTable.moment('YYYY-MM-DD HH:mm:ss');
+      $('#purchases').DataTable( {
+          "iDisplayLength": 50,
+          "order": [[ 3, "desc" ]]
+      } );
+  } );
+          
+ </script>
+</head>
+
+{% block content %} 
+<style>
+table.blueTable {
+  font-family: Arial, Helvetica, sans-serif;
+  border: 1px solid #1C6EA4;
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+}
+table.blueTable td, table.blueTable th {
+  border: 1px solid #AAAAAA;
+  padding: 4px 2px;
+}
+table.blueTable tbody td {
+  font-size: 13px;
+  font-weight: bold;
+}
+table.blueTable thead th {
+  font-size: 15px;
+  font-weight: bold;
+  color: #337AB7;
+  text-align: center;
+}
+table.blueTable tfoot td {
+  font-size: 14px;
+}  
+</style>
+
+<form action="card" method="POST">
+{% csrf_token %}
+<table class="blueTable">
+    <thead>
+    <tr>
+    <th>ID</th><th>Series</th>
+    <th>Number</th><th>Date create</th>
+    <th>Date start</th><th>Date end</th>
+    <th>Date delete</th><th>Status</th>
+    <th>Edit</th>
+    <th>Go back to</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td>{{card.id}}</td><td>{{card.series}}</td>
+    <td>{{card.number}}</td><td>{{card.date_create}}</td>
+    <td>{{card.date_start}}</td><td>{{card.date_end}}</td>
+    <td>{{card.date_delete}}</td><td>{{card.get_status_display}}</td>
+    <td><a class="btn btn-primary" href="{{ card.id }}/edit" role="button">EDIT</a></td>
+    <td><a class="btn btn-primary" href="/cards" role="button">Cards</a></td>
+    </tr>
+    </tbody>
+</table>
+</form>
+  </br>
+
+<table id="purchases" class="blueTable">
+    <thead>
+    <tr>
+    <th>#</th>
+    <th>Card</th>
+    <th>Date</th>
+    <th>Summ</th>
+    <th>Name, quantity, cost</th>
+    <th>More info</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for purchase in purchases %}
+    <tr>
+    <td>{{forloop.counter}}</td>
+    <td>{{ purchase.card }}</td>
+    <td>{{ purchase.date_create }}</td>
+    <td>{{ purchase.summ }}</td>
+    <td>{{ purchase.goods }}</td>
+    <td><a class="btn btn-primary" href="purchase/{{ purchase.id }}" role="button">More...</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %} 
+{# render_table purchases 'django_tables2/bootstrap.html' #}

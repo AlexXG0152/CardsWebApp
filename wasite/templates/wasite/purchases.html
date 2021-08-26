@@ -1,0 +1,44 @@
+{% extends 'wasite/base.html' %}
+{% load render_table from django_tables2 %}
+{% load literal_eval %}
+{% load static %}
+
+<!DOCTYPE html>
+{% block head %}
+    {{ block.super }}
+{% endblock%}
+
+{% block content %}
+{% for purchase in purchase %}
+<table id="purchase" class="table">
+  <thead>
+  <tr><td><strong>CARD:</strong></td><td><strong>{{ purchase.card }}</strong></td><td><a class="btn btn-primary" href="javascript:window.history.back();" role="button">Back</a></td></tr>
+  <tr><td><strong>DATE CREATE:</strong></td><td><strong>{{ purchase.date_create }}</strong></td><td><a class="btn btn-primary" href="javascript:window.print();" role="button">Print</a></td></tr>
+  <tr><td><strong>SUMM:</strong></td><td><strong>{{ purchase.summ }}</strong></td><td></td></tr>
+  <tr><td><strong>SHOP:</strong></td><td><strong>{{ purchase.shop }}</strong></td><td></td></tr>
+  <tr><td><strong>EMPLOEYE:</strong></td><td><strong>{{ purchase.emploeye }}</strong></td><td></td></tr>
+  <h4></h4>
+  <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+  <tr>
+  <th>Name</th>
+  <th>Quantity</th>
+  <th>Cost</th>
+  </tr>
+  </thead>
+  {% with name=purchase.goods|literal_eval %}
+  {% for key, value in name.items %} 
+  <tbody>
+  <tr>
+  <td>{{key}}</td>
+  <td>{{value.0}}</td>
+  <td>{{value.1}}</td>
+  </tr>
+  </tbody>
+  {% endfor %}
+</table>
+<hr>
+{% endwith %}
+
+{% endfor %}
+
+{% endblock%}

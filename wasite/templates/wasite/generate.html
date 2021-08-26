@@ -1,0 +1,66 @@
+{% extends 'wasite/cards.html' %}
+{% load bootstrap4 %}
+
+{% block title %}
+Create New Cards List
+{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<br>
+			<div class="row">
+				<div class="col-md-4 mx-auto">
+					<h3>Generate a New Cards</h3>
+					<br>
+					<form method="post" action="ready" class="form-group">
+						{% csrf_token %}
+    					{{form.as_p}}
+						<div class="input-group mb-3">
+						<div class="input-group-prepend">
+						<button name="generate" type="submit" class="btn btn-success">Generate</button>
+						<a class="btn btn-primary" href="/cards/" role="button">All cards list</a>
+						{% if message %}
+							<h3>{{message}}</h3>
+						{% endif %}
+						{% if not message %}
+							{% if cards %}
+	  					<button name="send_to_db" type="submit" class="btn btn-success">Send to DB</button>
+	  					</div>
+						</div>
+					</form>
+					<h3>Cards series from {{cards.0.0}}{{cards.0.1}} to {{cards.0.0}}{% with last_element=cards|last %}{{ last_element.1 }}{% endwith %} ready!</h3>
+							{% endif %}
+						{% endif %}
+
+						{% if success %}
+						<a class="btn btn-primary" href="/generate/" role="button">Back</a>
+						<h3>{{success}}</h3>
+						{% endif %}
+					</br></br>
+
+  					{% if exists_card %}
+					<table class="table">
+						<tr>
+						<th>Series</th>
+						<th>Start</th>
+						<th>End</th>
+						</tr>
+							{% for dict in exists_card %}
+							<tr>
+							{% for value in dict.values %}
+							<td>{{ value }}</td>
+							{% endfor %}
+						</tr>
+						{% endfor %}
+					</table>
+					{% endif %}
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

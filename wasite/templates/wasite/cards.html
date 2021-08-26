@@ -1,0 +1,34 @@
+{% extends 'wasite/base.html' %}
+{% load render_table from django_tables2 %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+<html lang="en">
+    
+{% block head %}
+    {{ block.super }}
+{% endblock%}
+
+{% block content %}    
+    <body>
+        <table class="blueTable">
+            <form action="" enctype="multipart/form-data" method="GET">
+                <th>{{ filter.form.id|as_crispy_field }}</th>
+                <th>{{ filter.form.series|as_crispy_field }}</th>
+                <th>{{ filter.form.number|as_crispy_field }}</th>
+                <th>{{ filter.form.date_start|as_crispy_field}}</th>
+                <th>{{ filter.form.date_end|as_crispy_field }}</th>
+                <th>{{ filter.form.date_delete|as_crispy_field }}</th>
+                <th>{{ filter.form.status|as_crispy_field }}</th>
+		        <th>{{ filter.form.period|as_crispy_field }}</th>
+                <th><input type="submit" value="Filter" class="btn btn-success"/></th>
+                <th><a class="btn btn-primary" href="/" role="button">Home</a></th>
+                <th><a class="btn btn-primary" href="/generate/" role="button">Generate</a></th>
+            </form>
+        </table>
+        <hr/>
+        {% render_table table %}
+    </body>
+{% endblock content %}
+
+</html>
