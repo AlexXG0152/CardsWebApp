@@ -1,0 +1,7 @@
+Admin user: 
+Name A
+Pass A
+
+User on web-site:
+User name - U
+Pass - 2508qaz2508
