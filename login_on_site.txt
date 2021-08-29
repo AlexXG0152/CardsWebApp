@@ -1,9 +1,0 @@
-https://whispering-tor-98398.herokuapp.com/accounts/login/
-
-Admin user: 
-Name A
-Pass A
-
-User on web-site:
-User name - U
-Pass - 2508qaz2508
