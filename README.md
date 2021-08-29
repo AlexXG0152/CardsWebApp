@@ -1,5 +1,6 @@
 # CardsWebApp
 Web application for working with discount shop cards
+https://whispering-tor-98398.herokuapp.com/accounts/login/
 
 ENGLISH WERSION (RUSSIAN VERION BELOW)
 
@@ -39,6 +40,7 @@ Note: Date fields can also contain time.
 ============================================
 РУССКАЯ ВЕРСИЯ
 ============================================
+Демо-версия - https://whispering-tor-98398.herokuapp.com/accounts/login/
 
 Я искал примеры тестовых заданий, который дают при приеме на работу и нашел вот это.
 Прочитав его, понял что мне это по силам и мне это интересно реализовать. Поэтому я решил сделать базу для приложения карт лояльности торговой сети опираясь на это техническое задание. 
